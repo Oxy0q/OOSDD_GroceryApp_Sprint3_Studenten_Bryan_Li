@@ -24,26 +24,45 @@ namespace Grocery.App
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+            // Services
             builder.Services.AddSingleton<IGroceryListService, GroceryListService>();
             builder.Services.AddSingleton<IGroceryListItemsService, GroceryListItemsService>();
             builder.Services.AddSingleton<IProductService, ProductService>();
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IClientService, ClientService>();
             builder.Services.AddSingleton<IFileSaverService, FileSaverService>();
+            builder.Services.AddSingleton<IUserService, UserService>();
 
+            // Repositories
             builder.Services.AddSingleton<IGroceryListRepository, GroceryListRepository>();
             builder.Services.AddSingleton<IGroceryListItemsRepository, GroceryListItemsRepository>();
             builder.Services.AddSingleton<IProductRepository, ProductRepository>();
             builder.Services.AddSingleton<IClientRepository, ClientRepository>();
+
+            // Global VM
             builder.Services.AddSingleton<GlobalViewModel>();
 
-            builder.Services.AddTransient<GroceryListsView>().AddTransient<GroceryListViewModel>();
-            builder.Services.AddTransient<GroceryListItemsView>().AddTransient<GroceryListItemsViewModel>();
-            builder.Services.AddTransient<ProductView>().AddTransient<ProductViewModel>();
-            builder.Services.AddTransient<ChangeColorView>().AddTransient<ChangeColorViewModel>();
-            builder.Services.AddTransient<LoginView>().AddTransient<LoginViewModel>();
+            // Views & ViewModels
+            builder.Services.AddTransient<GroceryListsView>();
+            builder.Services.AddTransient<GroceryListViewModel>();
+
+            builder.Services.AddTransient<GroceryListItemsView>();
+            builder.Services.AddTransient<GroceryListItemsViewModel>();
+
+            builder.Services.AddTransient<ProductView>();
+            builder.Services.AddTransient<ProductViewModel>();
+
+            builder.Services.AddTransient<ChangeColorView>();
+            builder.Services.AddTransient<ChangeColorViewModel>();
+
+            builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<LoginViewModel>();
+
+            builder.Services.AddTransient<RegisterView>();       
+            builder.Services.AddTransient<RegisterViewModel>();
+
             return builder.Build();
         }
     }
