@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="Grocery.App.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Grocery.App.Views"
-    Shell.FlyoutBehavior="Disabled"
-    Title="GroceryApp">
+<Shell x:Class="Grocery.App.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Grocery.App.Views"
+       Shell.FlyoutBehavior="Disabled"
+       Title="GroceryApp">
 
+    <!-- Login and Register routes -->
+    <ShellContent Route="LoginView" Title="Login" />
+    <ShellContent Route="RegisterView" Title="Register" />
+
+    <!-- TabBar for main app pages -->
     <TabBar>
         <Tab Title="Home" Icon="grocerylist.png">
             <ShellContent Title="Boodschappenlijsten" ContentTemplate="{DataTemplate local:GroceryListsView}" />
@@ -15,5 +18,4 @@
             <ShellContent Title="Producten" ContentTemplate="{DataTemplate local:ProductView}" />
         </Tab>
     </TabBar>
-    <ShellContent Title="Register" ContentTemplate="{DataTemplate local:RegisterView}" Route="RegisterView" />
 </Shell>
