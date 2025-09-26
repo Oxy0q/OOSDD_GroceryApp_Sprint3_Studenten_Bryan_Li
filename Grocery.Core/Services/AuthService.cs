@@ -1,22 +1,26 @@
-﻿using Grocery.Core.Helpers;
-using Grocery.Core.Interfaces.Services;
+﻿using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
 
-namespace Grocery.Core.Services
+namespace Grocery.Core.Services;
+
+public class AuthService : IAuthService
 {
-    public class AuthService : IAuthService
+    private readonly IUserService _userService;
+
+    public AuthService(IUserService userService)
     {
-        private readonly IClientService _clientService;
-        public AuthService(IClientService clientService)
+        _userService = userService;
+    }
+
+    public Client Login(string email, string password)
+    {
+        var user = _userService.GetByEmail(email);
+        if (user != null && user.Password == password)
         {
-            _clientService = clientService;
+            // Pass all required arguments to Client constructor
+            return new Client(user.Id, user.Name, user.Email, user.Password);
         }
-        public Client? Login(string email, string password)
-        {
-            Client? client = _clientService.Get(email);
-            if (client == null) return null;
-            if (PasswordHelper.VerifyPassword(password, client.Password)) return client;
-            return null;
-        }
+
+        return null;
     }
 }

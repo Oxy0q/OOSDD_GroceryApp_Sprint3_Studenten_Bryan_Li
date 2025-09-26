@@ -1,14 +1,10 @@
-using Grocery.App.ViewModels;
+namespace Grocery.App.Views;
 
-namespace Grocery.App.Views
+public partial class RegisterView : ContentPage
 {
-    public partial class RegisterView : ContentPage
+    public RegisterView(RegisterViewModel viewModel)
     {
-        // Constructor with DI-provided ViewModel
-        public RegisterView(RegisterViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel; // Set the BindingContext here
-        }
+        InitializeComponent();
+        BindingContext = viewModel;
     }
 }

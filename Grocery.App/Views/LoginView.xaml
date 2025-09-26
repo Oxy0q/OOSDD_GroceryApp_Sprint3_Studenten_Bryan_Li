@@ -4,12 +4,29 @@
              xmlns:vm="clr-namespace:Grocery.App.ViewModels"
              x:Class="Grocery.App.Views.LoginView"
              x:DataType="vm:LoginViewModel"
-             Title="LoginView">
-    <StackLayout Padding="20" VerticalOptions="Center">
+             Title="Login">
+
+    <StackLayout Padding="20" VerticalOptions="Center" Spacing="15">
+
+        <!-- Page title -->
         <Label Text="Login" FontSize="24" HorizontalOptions="Center" />
+
+        <!-- Email input -->
         <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" />
+
+        <!-- Password input -->
         <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
+
+        <!-- Login button -->
         <Button Text="Login" Command="{Binding LoginCommand}" />
-        <Label Text="{Binding LoginMessage}" TextColor="Red" />
+
+        <!-- Register navigation button -->
+        <Button Text="Register"
+                Command="{Binding NavigateToRegisterCommand}"
+                BackgroundColor="#C49B33"
+                TextColor="White" />
+
+        <!-- Display login message -->
+        <Label Text="{Binding LoginMessage}" TextColor="Red" HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>

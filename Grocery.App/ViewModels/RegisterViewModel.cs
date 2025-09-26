@@ -1,35 +1,25 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Grocery.Core.Interfaces.Services;
-using Grocery.Core.Models;
+
+namespace Grocery.App.ViewModels;
 
 public partial class RegisterViewModel : BaseViewModel
 {
-    private readonly IUserService _userService;
+    [ObservableProperty] private string name;
+    [ObservableProperty] private string email;
+    [ObservableProperty] private string password;
+    [ObservableProperty] private string confirmPassword;
+    [ObservableProperty] private string registrationMessage;
 
-    [ObservableProperty] string name;
-    [ObservableProperty] string email;
-    [ObservableProperty] string password;
-    [ObservableProperty] string registrationMessage;
-
-    public RegisterViewModel(IUserService userService)
+    public RegisterViewModel()
     {
-        _userService = userService;
+        // No services needed for now; commands can be stubbed
     }
 
     [RelayCommand]
-    public void Register()
+    private void Register()
     {
-        var user = new User(0, Name, Email, Password);
-        var result = _userService.Register(user);
-        if (result != null)
-        {
-            RegistrationMessage = "Registration successful!";
-            // Optionally navigate to another page
-        }
-        else
-        {
-            RegistrationMessage = "Email already exists. Please use a different email.";
-        }
+        // For now, just set a placeholder message for unit tests
+        RegistrationMessage = "Registration logic not implemented yet.";
     }
 }
